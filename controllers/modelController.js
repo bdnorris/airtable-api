@@ -3,7 +3,7 @@ var Airtable = require('airtable');
 var base = new Airtable({
   apiKey: process.env.AIRTABLE_API_KEY,
 }).base(process.env.AIRTABLE_BASE_ID);
-const table = base('Models');
+const table = base('Main');
 const view = "Grid view";
 
 exports.getModels = (req, res) => {
@@ -15,8 +15,8 @@ exports.getModels = (req, res) => {
       var models = records.map( record => {
           return {
             _id: record.getId(),
-            name: record.get('Full Name'),
-            photo: record.get('Headshot')
+            name: record.get('Name'),
+            photo: record.get('Link')
           }
       });
 
